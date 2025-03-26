@@ -1,0 +1,153 @@
+.inputContainer {
+  position: fixed;
+  bottom: 20px;
+  width: calc(100% - 340px); /* Accounting for left panel */
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.mediaButton {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  color: #666;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.mediaButton:hover {
+  background-color: #f0f0f0;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.inputField {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.textInput:focus {
+  border-color: #0070f3;
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #0070f3;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sendButton:hover {
+  background-color: #0050c5;
+}
+
+.sendButton .buttonIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0;
+}
+
+.optionsBar {
+  display: flex;
+  padding: 0 10px 10px 10px;
+}
+
+.autoButton {
+  display: flex;
+  align-items: center;
+  background-color: #FF9800; /* Orange */
+  color: black;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.autoButtonActive {
+  background-color: #2196F3; /* Blue */
+  color: white;
+}
+
+.dropdownIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  transform: rotate(180deg); /* Upside down */
+  transition: transform 0.2s;
+}
+
+.dropdownIconActive {
+  color: white;
+}
+
+.expandedOptions {
+  display: flex;
+  margin-left: 10px;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.optionButton {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-right: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.searchActive {
+  background-color: #2196F3; /* Blue */
+  color: white;
+}
+
+.reasoningActive {
+  background-color: #E91E63; /* Pink */
+  color: white;
+}
