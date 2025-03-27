@@ -104,8 +104,8 @@ export function formatMessagesForAPI(messages: Message[]): any[] {
   // Add each message to the array
   messagesToInclude.forEach(message => {
     formattedMessages.push({
-      role: message.role,
-      content: message.content
+      role: message?.role,
+      content: message?.content
     });
   });
   
