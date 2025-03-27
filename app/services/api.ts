@@ -46,7 +46,7 @@ interface ApiResponse {
 // Hardcoded model configuration - in a real app, this would come from an API route
 const MODEL_CONFIG: ModelConfig = {
   model: "dolphin-mistral",
-  baseUrl: "https://ai.alexalex.net",
+  baseUrl: "http://localhost:11434",
   apiConfig: {
     endpoint: "/api/chat",
     method: "POST",
