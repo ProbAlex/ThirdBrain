@@ -1,0 +1,191 @@
+.messagesContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.messageWrapper {
+  display: flex;
+  margin-bottom: 10px;
+  max-width: 80%;
+}
+
+.userMessage {
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.assistantMessage {
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+
+.messageBubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  position: relative;
+  word-break: break-word;
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+.userMessage .messageBubble {
+  background-color: var(--active-accent);
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+.assistantMessage .messageBubble {
+  background-color: var(--panel-bg);
+  color: var(--foreground);
+  border-top-left-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.messageContent {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.messageTime {
+  font-size: 10px;
+  opacity: 0.7;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* Loading indicator dots */
+.loadingDots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  gap: 4px;
+}
+
+.loadingDots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--foreground);
+  opacity: 0.7;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.loadingDots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loadingDots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loadingDots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Streaming message styles */
+.streamingIndicator {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+  height: 12px;
+}
+
+.typingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--active-accent);
+  opacity: 0.7;
+  animation: blink 1s infinite ease-in-out;
+}
+
+.typingDot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Add a blinking cursor to the streaming content */
+.messageContent:empty::after,
+.messageContent:last-child::after {
+  content: '|';
+  display: inline-block;
+  color: var(--active-accent);
+  animation: cursor-blink 1s infinite step-end;
+  margin-left: 2px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* For scrolling */
+.scrollAnchor {
+  height: 1px;
+  width: 100%;
+  margin-top: 20px;
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: -1;
+}
+
+/* Ensure the message container has enough room to scroll */
+.messagesContainer {
+  padding-bottom: 150px; /* Add extra padding at the bottom */
+}
+
+/* Special formatting for code blocks */
+.messageContent pre {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.messageContent code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px 4px;
+  border-radius: 3px;
+}

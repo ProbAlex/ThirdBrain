@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: var(--background);
 }
 
 .center {
@@ -30,14 +30,14 @@
   font-size: 3rem;
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(90deg, #0070f3, #00bcd4);
+  background: linear-gradient(90deg, var(--active-accent), #00bcd4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .description {
   font-size: 1.2rem;
-  color: #666;
+  color: #aaa;
   margin-top: 1rem;
 }
 

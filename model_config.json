@@ -1,0 +1,29 @@
+{
+  "model": "dolphin-mistral",
+  "baseUrl": "https://ai.alexalex.net",
+  "apiConfig": {
+    "endpoint": "/api/chat",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "requestFormat": {
+    "model": "dolphin-mistral",
+    "messages": [],
+    "options": {
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 2000
+    },
+    "stream": false
+  },
+  "messageFormatting": {
+    "system": "You are 3rd Brain, a helpful assistant with expertise in various topics. Provide concise, accurate and helpful responses.",
+    "userPrefix": "",
+    "assistantPrefix": "",
+    "messageDelimiter": "\n\n",
+    "includePreviousMessages": true,
+    "maxPreviousMessages": 10
+  }
+}

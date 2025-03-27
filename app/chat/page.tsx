@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { MessageProvider } from '../store/MessageContext';
 import Header from './components/Header';
 import ChatHistory from './components/ChatHistory';
 import ChatInput from './components/ChatInput';
+import ChatMessages from './components/ChatMessages';
 import styles from './page.module.css';
 
 export default function ChatPage() {
@@ -29,26 +31,31 @@ export default function ChatPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <div 
-        className={styles.leftPanel} 
-        style={{ width: `${leftPanelWidth}px` }}
-      >
-        <Header />
-        <ChatHistory />
-      </div>
-      <div 
-        className={styles.resizeHandle}
-        onMouseDown={handleMouseDown}
-      />
-      <div className={styles.rightPanel} style={{ marginLeft: `${leftPanelWidth}px` }}>
-        <div className={styles.chatContainer}>
-          <div className={styles.chatMessages}>
-            {/* Chat messages will go here */}
+    <MessageProvider>
+      <div className={styles.container}>
+        <div className={styles.headerBar}>
+          <Header />
+        </div>
+        <div className={styles.contentContainer}>
+          <div 
+            className={styles.leftPanel} 
+            style={{ width: `${leftPanelWidth}px` }}
+          >
+            <ChatHistory />
           </div>
-          <ChatInput />
+          <div 
+            className={styles.resizeHandle}
+            onMouseDown={handleMouseDown}
+            style={{ left: `${leftPanelWidth}px` }}
+          />
+          <div className={styles.rightPanel} style={{ marginLeft: `${leftPanelWidth}px` }}>
+            <div className={styles.chatContainer}>
+              <ChatMessages />
+              <ChatInput />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </MessageProvider>
   );
 }

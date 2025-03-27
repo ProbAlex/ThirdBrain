@@ -1,20 +1,20 @@
 .chatHistoryContainer {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 64px); /* Subtract header height */
+  height: calc(100% - 0px); /* Updated for full height */
   overflow: hidden;
 }
 
 .historyHeader {
   padding: 15px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .historyHeader h2 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #666;
+  color: #aaa;
 }
 
 .chatList {
@@ -24,26 +24,68 @@
 
 .chatItem {
   padding: 15px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-color);
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .chatItem:hover {
-  background-color: #efefef;
+  background-color: var(--hover-bg);
+}
+
+.chatItem.active {
+  background-color: rgba(var(--primary-rgb), 0.08);
+  border-left: 3px solid var(--primary);
+  padding-left: 12px;
 }
 
 .chatTitle {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--foreground);
   margin-bottom: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.chatControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .chatTimestamp {
   font-size: 12px;
   color: #888;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.chatItem:hover .deleteButton {
+  opacity: 1;
+}
+
+.deleteButton:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+}
+
+.deleteIcon {
+  width: 16px;
+  height: 16px;
 }

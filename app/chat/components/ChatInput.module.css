@@ -4,9 +4,9 @@
   width: calc(100% - 340px); /* Accounting for left panel */
   max-width: 1100px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: var(--panel-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
 }
@@ -22,7 +22,7 @@
   align-items: center;
   border: none;
   background: none;
-  color: #666;
+  color: #aaa;
   padding: 8px;
   font-size: 14px;
   cursor: pointer;
@@ -31,7 +31,7 @@
 }
 
 .mediaButton:hover {
-  background-color: #f0f0f0;
+  background-color: var(--hover-bg);
 }
 
 .buttonIcon {
@@ -48,16 +48,22 @@
 .textInput {
   width: 100%;
   padding: 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 14px;
   resize: none;
   outline: none;
   transition: border-color 0.2s;
+  background-color: var(--input-bg);
+  color: var(--foreground);
+}
+
+.textInput::placeholder {
+  color: #888; /* Darker placeholder text (was default #999) */
 }
 
 .textInput:focus {
-  border-color: #0070f3;
+  border-color: var(--active-accent);
 }
 
 .sendButton {
@@ -65,7 +71,7 @@
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: #0070f3;
+  background-color: var(--active-accent);
   color: white;
   width: 36px;
   height: 36px;
@@ -75,7 +81,7 @@
 }
 
 .sendButton:hover {
-  background-color: #0050c5;
+  background-color: #0062d6;
 }
 
 .sendButton .buttonIcon {
@@ -92,7 +98,7 @@
 .autoButton {
   display: flex;
   align-items: center;
-  background-color: #FF9800; /* Orange */
+  background-color: var(--primary-accent); /* Orange */
   color: black;
   border: none;
   border-radius: 4px;
@@ -100,12 +106,16 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  z-index: 2;
 }
 
 .autoButtonActive {
-  background-color: #2196F3; /* Blue */
+  background-color: var(--active-accent); /* Blue */
   color: white;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .dropdownIcon {
@@ -113,26 +123,53 @@
   height: 16px;
   margin-left: 6px;
   transform: rotate(180deg); /* Upside down */
-  transition: transform 0.2s;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .dropdownIconActive {
   color: white;
+  transform: rotate(90deg); /* Rotate to point right */
 }
 
 .expandedOptions {
   display: flex;
-  margin-left: 10px;
-  animation: slideIn 0.2s ease-out;
+  margin-left: -5px; /* Negative margin to create overlap effect */
+  animation: pullOut 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  background-color: #2a2a2a;
+  border-radius: 0 4px 4px 0;
+  padding: 0 5px 0 15px; /* More padding on left for indentation effect */
+  position: relative;
+  z-index: 1;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.05); /* Subtle indentation line */
+  overflow: hidden;
+  transform-origin: left center;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes pullOut {
+  0% { 
+    opacity: 0;
+    transform: translateX(-20px) scaleX(0.2);
+    width: 0;
+    box-shadow: none;
+  }
+  40% {
+    transform: translateX(-5px) scaleX(0.6);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translateX(5px) scaleX(1.05);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+    width: auto;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .optionButton {
-  background-color: #f5f5f5;
+  background-color: #333;
   border: none;
   border-radius: 4px;
   padding: 6px 12px;
@@ -140,14 +177,15 @@
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.2s;
+  color: #aaa;
 }
 
 .searchActive {
-  background-color: #2196F3; /* Blue */
+  background-color: var(--active-accent); /* Blue */
   color: white;
 }
 
 .reasoningActive {
-  background-color: #E91E63; /* Pink */
+  background-color: var(--secondary-accent); /* Pink */
   color: white;
 }

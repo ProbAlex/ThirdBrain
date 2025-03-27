@@ -1,13 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useMessages } from '../../store/MessageContext';
 import styles from './ChatInput.module.css';
 
 const ChatInput = () => {
+  const { sendMessage, isLoading } = useMessages();
   const [message, setMessage] = useState('');
   const [showOptions, setShowOptions] = useState(false);
   const [searchToggled, setSearchToggled] = useState(false);
   const [reasoningToggled, setReasoningToggled] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [message]);
 
   const handleAutoClick = () => {
     setShowOptions(!showOptions);
@@ -19,6 +30,22 @@ const ChatInput = () => {
 
   const handleReasoningToggle = () => {
     setReasoningToggled(!reasoningToggled);
+  };
+
+  const handleSubmit = async () => {
+    if (message.trim() && !isLoading) {
+      const currentMessage = message;
+      setMessage('');
+      await sendMessage(currentMessage);
+    }
+  };
+
+  // Handle Enter key to send message (Shift+Enter for new line)
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
   };
 
   return (
@@ -33,15 +60,22 @@ const ChatInput = () => {
         
         <div className={styles.inputField}>
           <textarea 
+            ref={textareaRef}
             value={message} 
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Type your message here..."
             rows={1}
             className={styles.textInput}
+            disabled={isLoading}
           />
         </div>
         
-        <button className={styles.sendButton}>
+        <button 
+          className={styles.sendButton}
+          onClick={handleSubmit}
+          disabled={!message.trim() || isLoading}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={styles.buttonIcon}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
           </svg>
